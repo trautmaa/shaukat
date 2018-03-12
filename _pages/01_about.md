@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-About content goes here.
+Works:
 
-* A list item
-* Another list item
+* Caligula
+* Sonnets

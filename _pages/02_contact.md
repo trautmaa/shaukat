@@ -6,4 +6,4 @@ permalink: /contact/
 
 Contact content goes here.
 
-My e-mail is [trautwebdev@gmail.com](mailto:trautwebdev@gmail.com).
+My e-mail is [adamsemail@gmail.com](mailto:adamsemail@gmail.com).
