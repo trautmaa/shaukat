@@ -8,6 +8,9 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
+# To run locally for dev purposes:
+# jekyll serve --config _config.yml,_config_dev.yml
+
 # Site settings
 # These are used to personalize your new site. If you look in the HTML files,
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
@@ -18,8 +21,8 @@ email: trautwebdev@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Adam Shaukat is an actor based in New York City. He focuses on dramatic theater and is
   a student of the Yale School of Drama.
-baseurl: "/shaukat"
-url: "http://trautmaa.github.io"
+baseurl: ""
+url: "http://localhost:4000"
 twitter_username: 
 github_username:  trautmaa
 
