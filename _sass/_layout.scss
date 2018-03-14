@@ -30,8 +30,8 @@ h2 {
 }
 a,
 a:visited {
-	color: $link-color;
-	text-decoration: underline;
+	color: $main;
+	text-decoration: none;
 	font-weight: bold;
 }
 a:hover {
@@ -166,4 +166,20 @@ hr {
 	margin: 1em 0;
 	padding: 0;
 	border-top: 1px solid $main;
+}
+
+
+.sidenav {
+    width: 130px;
+    position: fixed;
+    z-index: 1;
+    top: 20px;
+    left: 10px;
+    overflow-x: hidden;
+    padding: 8px 0;
+}
+
+.sidenav a {
+    display: block;
+		display: none;
 }

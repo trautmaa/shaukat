@@ -1,7 +1,13 @@
 ---
 layout: default-no-header
 ---
-
+<div class="sidenav">
+  {% for section in site.sections %}
+    <h2>
+      <a href="#" class="{{ section.title | slugify }}">{{ section.title}}</a>
+    </h2>
+  {% endfor %}
+</div>
 <div class="fullscreen">
   <div class="wrapper">
     <h1 class="hero">Adam Shaukat</h1>

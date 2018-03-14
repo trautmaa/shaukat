@@ -5,16 +5,16 @@ $.fn.isGone = function() {
   var viewportTop = $(window).scrollTop();
   var viewportBottom = viewportTop + $(window).height();
 
-  return elementTop <= viewportTop;
+  return elementBottom <= viewportTop;
 };
 
 $(window).on('resize scroll', function() {
   $('h2.menu').each(function() {
       var activeMenuItem = $(this).attr('id');
       if ($(this).isGone()) {
-        console.log($(this).attr('id') + "is gone");
+        $("a." + activeMenuItem).css("display", "block");
       } else {
-
+        $("a." + activeMenuItem).css("display", "none");
       }
   });
 });
