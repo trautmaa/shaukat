@@ -1,5 +1,5 @@
 $content-width: 800px;
-$main: #19CCAA;
+$main: #120f26;
 $font-style: 'Open Sans', sans-serif;
 $font-color: #262626;
 $link-color: #425469;
@@ -8,6 +8,7 @@ $heading-font: 'Muli', sans-serif;
 $heading-font-color: #425469;
 $light: #E7EDF4;
 $header:  #120f26;
+$chance: #EF5556;
 
 *,
 *::before,
@@ -21,24 +22,24 @@ $header:  #120f26;
 	@if $class == mob {
 	  @media (max-width: 479px) { @content; }
 	}
-   
+
 	@else if $class == xs {
 		@media (max-width: 767px) { @content; }
 	}
-	
+
 	@else if $class == sm {
 		@media (min-width: 768px) { @content; }
 	}
-	 	 
+
 	@else if $class == md {
 	  @media (min-width: 992px) { @content; }
 	}
-   
+
 	@else if $class == lg {
 	  @media (min-width: 1200px) { @content; }
 	}
-   
+
 	@else {
-	  @warn "Breakpoint mixin supports: xs, sm, md, lg";
+	  @warn "Breakpoint mixin supports: mob, xs, sm, md, lg";
 	}
   }

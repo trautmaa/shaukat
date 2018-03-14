@@ -46,7 +46,7 @@ plugins:
 # Sass
 sass:
     sass_dir: _sass
-    #style: compressed
+    style: compressed
 include: ['_pages']
 kramdown:
   input: GFM
