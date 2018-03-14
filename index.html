@@ -7,7 +7,9 @@ layout: default-no-header
     <h1 class="hero">Adam Shaukat</h1>
     <div class="mug"></div>
     <div>
-
+      {% for section in site.sections %}
+        <h2 class="menu" id="{{ section.title | slugify }}">{{ section.title}}</h2>
+      {% endfor %}
     </div>
   </div>
 </div>
