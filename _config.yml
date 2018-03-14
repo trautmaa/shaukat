@@ -20,7 +20,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   a student of the Yale School of Drama.
 baseurl: "/shaukat"
 url: "http://trautmaa.github.io"
-twitter_username: 
+twitter_username:
 github_username:  trautmaa
 
 # Build settings
@@ -50,3 +50,7 @@ sass:
 include: ['_pages']
 kramdown:
   input: GFM
+
+# Collections
+collections:
+- sections

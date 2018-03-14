@@ -1,0 +1,20 @@
+---
+layout: default-no-header
+---
+
+<div class="fullscreen">
+  <div class="wrapper">
+    <h1 class="hero">Adam Shaukat</h1>
+    <div class="mug"></div>
+    <div>
+
+    </div>
+  </div>
+</div>
+<hr/>
+<div>
+  {% for section in site.sections %}
+    <h1>{{ section.title }}</h1>
+    <hr />
+  {% endfor %}
+</div>
