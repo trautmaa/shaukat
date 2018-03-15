@@ -57,3 +57,4 @@ kramdown:
 # Collections
 collections:
 - sections
+- waypoints

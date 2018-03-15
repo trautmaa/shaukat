@@ -27,7 +27,6 @@ h1 {
 }
 h2 {
 	font-size: 2em;
-	margin: 3%;
 }
 a,
 a:visited {
@@ -136,6 +135,10 @@ div.bg {
 	align-items: center;
 }
 
+.menu.nav-item {
+	margin: 3%;
+}
+
 .mug {
 	background-image: url('/assets/bangerbox.svg');
   background-size: contain;
@@ -207,27 +210,24 @@ div.section {
 	fill: $offwhite;
 }
 
-.croton{
+.waypoints{
 	fill: #ef5556;
   width:1.25em;
   height:1.25em;
   display:inline;
-  overflow:visible;
-  overflow-x:visible;
-  overflow-y:visible;
-  position:relative;
+  // overflow:visible;
+  // overflow-x:visible;
+  // overflow-y:visible;
+  // position:relative;
   top:.1875em;
-  animation:croton-thump 1.5s linear infinite;
+  animation:waypoint-throb 2s infinite;
   backface-visibility:hidden
 }
 
-@keyframes croton-thump{
-	from {
-			-webkit-transform:scale(1);
-	}
-	to {
-			-webkit-transform:scale(4.333);
-	}
+@keyframes waypoint-throb{
+	0%        {fill: $offwhite}
+  15%, 70%  {fill: $chance}
+  85%, 100% {fill: $offwhite}
 }
 
 .back-arrow {
