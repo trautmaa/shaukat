@@ -43,8 +43,6 @@ header {
 	background: $header;
 	padding: 0px 15px;
 	text-align: center;
-	margin: 50px 0 0;
-	height: 40vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -196,6 +194,10 @@ div.section {
 	color: $offwhite;
 }
 
+.fill-white {
+	fill: $offwhite;
+}
+
 .svg {
   width: 100%;
   height: auto;
@@ -226,4 +228,16 @@ div.section {
 	to {
 			-webkit-transform:scale(4.333);
 	}
+}
+
+.back-arrow {
+	transform: scale(0.4);
+}
+
+.header-grid{
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.title {
+	white-space: nowrap;
 }

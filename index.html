@@ -14,7 +14,9 @@ layout: default-no-header
     <div class="mug"></div>
     <div>
       {% for section in site.sections %}
-        <h2 data-slug="{{ section.title | slugify }}" class="menu nav-item" id="{{ section.title | slugify }}">{{ section.title}}</h2>
+        <a href="#">
+          <h2 data-slug="{{ section.title | slugify }}" class="menu nav-item" id="{{ section.title | slugify }}">{{ section.title}}</h2>
+        </a>
       {% endfor %}
     </div>
   </div>
