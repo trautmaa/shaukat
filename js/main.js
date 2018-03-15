@@ -1,3 +1,14 @@
+// Scroll to section
+$(".nav-item").click(function() {
+    var offset = -5; //Offset of 20px
+    var activeSlug = $(this).attr("data-slug");
+    console.log(activeSlug);
+    $('html, body').animate({
+        scrollTop: $(".section." + activeSlug).offset().top + offset
+    }, 500);
+});
+
+// Check if an element lies across the top of the viewport
 $.fn.isGone = function() {
   var elementTop = $(this).offset().top;
   var elementBottom = elementTop + $(this).outerHeight();
@@ -5,16 +16,18 @@ $.fn.isGone = function() {
   var viewportTop = $(window).scrollTop();
   var viewportBottom = viewportTop + $(window).height();
 
-  return elementBottom <= viewportTop;
+  return elementTop <= viewportTop;
 };
 
-$.fn.isTop = function() {
+// Check if an element lies across the vertical middle of the viewport
+$.fn.isMid = function() {
   var elementTop = $(this).offset().top;
   var elementBottom = elementTop + $(this).outerHeight();
 
   var viewportTop = $(window).scrollTop();
+  var viewportMid = viewportTop + $(window).height() / 2;
 
-  return (elementTop <= viewportTop && viewportTop <= elementBottom);
+  return (elementTop <= viewportMid && viewportMid <= elementBottom);
 };
 
 $(window).on('resize scroll', function() {
@@ -24,7 +37,7 @@ $(window).on('resize scroll', function() {
 
 
       // Reveal / hide on fixed sidenav
-      var activeSlug = $(this).attr('id');
+      var activeSlug = $(this).attr('data-slug');
       var activeLink = "a." + activeSlug;
       if ( $(this).isGone() ) {
         $(activeLink).css("display", "block");
@@ -34,7 +47,7 @@ $(window).on('resize scroll', function() {
 
       // Grow the active menu item
       var activeSection = "div." + activeSlug;
-      if ( $(activeSection).isTop() ) {
+      if ( $(activeSection).isMid() ) {
         $(activeLink).addClass("active");
       } else {
         $(activeLink).removeClass("active");

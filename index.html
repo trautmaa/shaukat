@@ -4,7 +4,7 @@ layout: default-no-header
 <div class="sidenav">
   {% for section in site.sections %}
     <h2>
-      <a href="#" class="{{ section.title | slugify }}">{{ section.title}}</a>
+      <a href="#" data-slug="{{ section.title | slugify }}" class="nav-item {{ section.title | slugify }}">{{ section.title}}</a>
     </h2>
   {% endfor %}
 </div>
@@ -14,7 +14,7 @@ layout: default-no-header
     <div class="mug"></div>
     <div>
       {% for section in site.sections %}
-        <h2 class="menu" id="{{ section.title | slugify }}">{{ section.title}}</h2>
+        <h2 data-slug="{{ section.title | slugify }}" class="menu nav-item" id="{{ section.title | slugify }}">{{ section.title}}</h2>
       {% endfor %}
     </div>
   </div>
@@ -22,7 +22,7 @@ layout: default-no-header
 <hr/>
 <div>
   {% for section in site.sections %}
-    <div class="section {{ section.title | slugify }}">
+    <div data-slug="{{ section.title | slugify }}" class="section {{ section.title | slugify }}">
       <h1>{{ section.title }}</h1>
       {{ section.content }}
       <hr />
