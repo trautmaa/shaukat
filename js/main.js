@@ -8,13 +8,40 @@ $.fn.isGone = function() {
   return elementBottom <= viewportTop;
 };
 
+$.fn.isTop = function() {
+  var elementTop = $(this).offset().top;
+  var elementBottom = elementTop + $(this).outerHeight();
+
+  var viewportTop = $(window).scrollTop();
+
+  return (elementTop <= viewportTop && viewportTop <= elementBottom);
+};
+
 $(window).on('resize scroll', function() {
+
+  // Iterate through menu items
   $('h2.menu').each(function() {
-      var activeMenuItem = $(this).attr('id');
-      if ($(this).isGone()) {
-        $("a." + activeMenuItem).css("display", "block");
+
+
+      // Reveal / hide on fixed sidenav
+      var activeSlug = $(this).attr('id');
+      var activeLink = "a." + activeSlug;
+      if ( $(this).isGone() ) {
+        $(activeLink).css("display", "block");
       } else {
-        $("a." + activeMenuItem).css("display", "none");
+        $(activeLink).css("display", "none");
       }
+
+      // Grow the active menu item
+      var activeSection = "div." + activeSlug;
+      if ( $(activeSection).isTop() ) {
+        $(activeLink).addClass("active");
+      } else {
+        $(activeLink).removeClass("active");
+      }
+
   });
+
+
+
 });

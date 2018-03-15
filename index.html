@@ -22,7 +22,10 @@ layout: default-no-header
 <hr/>
 <div>
   {% for section in site.sections %}
-    <h1>{{ section.title }}</h1>
-    <hr />
+    <div class="section {{ section.title | slugify }}">
+      <h1>{{ section.title }}</h1>
+      {{ section.content }}
+      <hr />
+    </div>
   {% endfor %}
 </div>

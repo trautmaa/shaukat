@@ -16,6 +16,7 @@ h3 {
 	line-height: 1.5;
 }
 h1 {
+	margin: 0;
 	color: $main;
 	font-size: 5.5em;
 	a,
@@ -163,23 +164,31 @@ hr {
 	display: block;
 	height: 1px;
 	border: 0;
-	margin: 1em 0;
+	margin: 0;
 	padding: 0;
 	border-top: 1px solid $main;
 }
 
 
 .sidenav {
-    width: 130px;
-    position: fixed;
-    z-index: 1;
-    top: 20px;
-    left: 10px;
-    overflow-x: hidden;
-    padding: 8px 0;
+  width: 130px;
+  position: fixed;
+  z-index: 1;
+  top: 20px;
+  left: 10px;
+  overflow-x: hidden;
+  padding: 8px 0;
 }
 
 .sidenav a {
-    display: block;
-		display: none;
+  display: block;
+	display: none;
+}
+
+.sidenav a.active {
+	color: #338F8F;
+	text-decoration: none;
+}
+
+div.section {
 }
