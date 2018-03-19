@@ -140,7 +140,7 @@ div.bg {
 }
 
 .mug {
-	background-image: url('/assets/bangerbox.svg');
+	background-image: url('../assets/bangerbox.svg');
   background-size: contain;
   background-repeat: no-repeat;
   width: 100%;
@@ -226,7 +226,7 @@ div.section {
 
 @keyframes waypoint-throb{
 	0%        {fill: $offwhite}
-  15%, 70%  {fill: $chance}
+  15%, 70%  {fill: $main}
   85%, 100% {fill: $offwhite}
 }
 
@@ -240,4 +240,10 @@ div.section {
 
 .title {
 	white-space: nowrap;
+}
+
+.avatar {
+	height:25px;
+	background-image: url("/assets/jiggly.svg");
+	background-repeat: no-repeat;
 }
