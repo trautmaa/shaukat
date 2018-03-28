@@ -7,4 +7,4 @@ Acting like I know where I'm going
 
 Check it out [here][journey].
 
-[journey]: /journey
+[journey]: {{site.baseurl}}/journey
