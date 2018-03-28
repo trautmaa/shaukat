@@ -140,7 +140,7 @@ div.bg {
 }
 
 .mug {
-	background-image: url('/assets/bangerbox.svg');
+	background-image: url($baseurl + '/assets/bangerbox.svg');
   background-size: contain;
   background-repeat: no-repeat;
   width: 100%;
