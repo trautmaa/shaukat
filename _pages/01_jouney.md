@@ -4,17 +4,216 @@ title: Journey
 permalink: /journey/
 ---
 
-{% for waypoint in site.waypoints %}
+<style>
+    /* body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; } */
+</style>
+
+<style>
+#map {
+    height: 300px;
+
+}
+#features {
+height:300px;
+overflow-y:scroll;
+} 
+
+/*#map {
+  height:300px;
+  width:50%;
+}
+
+#map {
+    position: fixed;
+    width:50%;
+}*/
+#features {
+    font-family: sans-serif;
+    overflow-y: scroll;
+    background-color: #fafafa;
+} 
+section {
+    padding:  25px 50px;
+    line-height: 25px;
+    border-bottom: 1px solid #ddd;
+    opacity: 0.25;
+    font-size: 13px;
+}
+section.active {
+    opacity: 1;
+}
+section:last-child {
+    border-bottom: none;
+    margin-bottom: 200px;
+} */
+</style>
+
+<div id="mapwrap">
+<div id='map'></div>
+<div id='features'>
+    <section id='croton' class='active'>
+        <h3>croton</h3>
+        <p>November 1895. London is shrouded in fog and Sherlock Holmes and Watson pass time restlessly awaiting a new case. "The London criminal is certainly a dull fellow," Sherlock bemoans. "There have been numerous petty thefts," Watson offers in response. Just then a telegram arrives from Sherlock's brother Mycroft with a mysterious case.</p>
+    </section>
+    <section id='nyc'>
+        <h3>New York</h3>
+        <p>Arthur Cadogan West was found dead, head crushed in on train tracks at Aldgate Station at 6AM Tuesday morning. West worked at Woolwich Arsenal on the Bruce-Partington submarine, a secret military project. Plans for the submarine had been stolen and seven of the ten missing papers were found in West's possession. Mycroft implores Sherlock to take the case and recover the three missing papers.</p>
+    </section>
+    <section id='morocco'>
+        <h3>Morocco</h3>
+        <p>Holmes and Watson's investigations take them across London. Sherlock deduces that West was murdered elsewhere, then moved to Aldgate Station to create the illusion that he was crushed on the tracks by a train. On their way to Woolwich Sherlock dispatches a telegram to Mycroft at London Bridge: "Send list of all foreign spies known to be in England, with full address."</p>
+    </section>
+    <section id='miami'>
+        <h3>Miami</h3>
+        <p>While investigating at Woolwich Arsenal Sherlock learns that West did not have the three keys&mdash;door, office, and safe&mdash;necessary to steal the papers. The train station clerk mentions seeing an agitated West boarding the 8:15 train to London Bridge. Sherlock suspects West of following someone who had access to the Woolwich chief's keyring with all three keys.</p>
+    </section>
+    <section id='newhaven'>
+        <h3>New Haven</h3>
+        <p>Mycroft responds to Sherlock's telegram and mentions several spies. Hugo Oberstein of 13 Caulfield Gardens catches Sherlock's eye. He heads to the nearby Gloucester Road station to investigate and learns that the windows of Caulfield Gardens open over rail tracks where trains stop frequently.</p>
+    </section>
+    <section id='northfield'>
+        <h3>Northfield</h3>
+        <p>Holmes deduces that the murderer placed West atop a stopped train at Caulfield Gardens. The train traveled to Aldgate Station before West's body finally toppled off. Backtracking to the criminal's apartment, Holmes finds a series of classified ads from <em>The Daily Telegraph</em> stashed away. All are under the name Pierrot: "Monday night after nine. Two taps. Only ourselves. Do not be so suspicious. Payment in hard cash when goods delivered."</p>
+    </section>
+    <section id='oxford'>
+        <h3>Oxford</h3>
+        <p>Holmes and Watson head to The Daily Telegraph and place an ad to draw out the criminal. It reads: "To-night. Same hour. Same place. Two taps. Most vitally important. Your own safety at stake. Pierrot." The trap works and Holmes catches the criminal: Colonel Valentine Walter, the brother of Woolwich Arsenal's chief. He confesses to working for Hugo Oberstein to obtain the submarine plans in order to pay off his debts.</p>
+    </section>
+    <section id='moab'>
+        <h3>Moab</h3>
+        <p>Holmes and Watson head to The Daily Telegraph and place an ad to draw out the criminal. It reads: "To-night. Same hour. Same place. Two taps. Most vitally important. Your own safety at stake. Pierrot." The trap works and Holmes catches the criminal: Colonel Valentine Walter, the brother of Woolwich Arsenal's chief. He confesses to working for Hugo Oberstein to obtain the submarine plans in order to pay off his debts.</p>
+    </section>
+    <section id='granada'>
+        <h3>Granada</h3>
+        <p>Holmes and Watson head to The Daily Telegraph and place an ad to draw out the criminal. It reads: "To-night. Same hour. Same place. Two taps. Most vitally important. Your own safety at stake. Pierrot." The trap works and Holmes catches the criminal: Colonel Valentine Walter, the brother of Woolwich Arsenal's chief. He confesses to working for Hugo Oberstein to obtain the submarine plans in order to pay off his debts.</p>
+    </section>
+    <section id='tucson'>
+        <h3>Tucson</h3>
+        <p>Walter writes to Oberstein and convinces him to meet in the smoking room of the Charing Cross Hotel where he promises additional plans for the submarine in exchange for money. The plan works and Holmes and Watson catch both criminals.</p>
+        <small id="citation">
+            Adapted from <a href='http://www.gutenberg.org/files/2346/2346-h/2346-h.htm'>Project Gutenberg</a>
+        </small>
+    </section>
+</div>
+<div style="clear:both;"></div>
+</div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWxleHRyIiwiYSI6ImNpZ2ExbG15YzA4bzF0a20zYzltaGFlaHkifQ.wLsWFLI8mnMHcTRsDpuRYg';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/alextr/cjfbh3kum2fa92sq95lwlowfv',
+    center: [-73.8912, 41.2084], //Croton
+    zoom: 7,
+    bearing: 27,
+    pitch: 45
+});
+var chapters = {
+    'morocco': {
+        bearing: 27,
+        center: [-6.017073, 32.350751], //Morocco
+        zoom: 7,
+        pitch: 20
+    },
+    'miami': {
+        bearing: 27,
+        center: [-80.1937, 25.7743], //Miami
+        zoom: 7,
+        pitch: 20
+    },
+    'croton': {
+        duration: 6000,
+        center: [-73.8912, 41.2084], //Croton
+        bearing: 150,
+        zoom: 7,
+        pitch: 0
+    },
+    'northfield': {
+        bearing: 90,
+        center: [-93.1612, 44.4582], //Nofo
+        zoom: 7,
+        speed: 0.6,
+        pitch: 40
+    },
+    'newhaven': {
+        bearing: 90,
+        center: [-72.9251, 41.3082], //New Haven
+        zoom: 7
+    },
+    'nyc': {
+        bearing: 45,
+        center: [-73.9808, 40.7648], //NYC
+        zoom: 7,
+        pitch: 20,
+        speed: 0.5
+    },
+    'oxford': {
+        bearing: 180,
+        center: [-1.25778, 51.75194], //Oxford
+        zoom: 7
+    },
+    'tucson': {
+        bearing: 90,
+        center: [-110.9265, 32.2217], //Tucson
+        zoom: 7,
+        pitch: 40
+    },
+    'moab': {
+        bearing: 90,
+        center: [-109.5462, 38.5738], //Moab
+        zoom: 7,
+        pitch: 20
+    },
+    'granada': {
+        bearing: 90,
+        center: [-3.60083, 37.17806], //Granada
+        zoom: 7,
+        pitch: 20
+    }
+};
+// On every scroll event, check which element is on screen
+$("#features").scroll(function() {
+    var chapterNames = Object.keys(chapters);
+    for (var i = 0; i < chapterNames.length; i++) {
+        var chapterName = chapterNames[i];
+        if (isElementInView(chapterName)) {
+            setActiveChapter(chapterName);
+            break;
+        }
+    }
+});
+var activeChapterName = 'croton';
+function setActiveChapter(chapterName) {
+    if (chapterName === activeChapterName) return;
+    map.flyTo(chapters[chapterName]);
+    document.getElementById(chapterName).setAttribute('class', 'active');
+    document.getElementById(activeChapterName).setAttribute('class', '');
+    activeChapterName = chapterName;
+}
+function isElementInView(id) {
+    var element = document.getElementById(id);
+    var elementRect = element.getBoundingClientRect();
+    var parent = element.parentNode;
+    var parentRect = parent.getBoundingClientRect();
+    var parentMidline = (parentRect.height / 2) + parentRect.top;
+    return (elementRect.top < parentMidline) && (elementRect.bottom > parentMidline);
+}
+</script>
+
+
+
+
+<!-- {% for waypoint in site.waypoints %}
   <h3>{{ waypoint.name }}</h3>
 {% endfor %}
 
-
-<svg class="states" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 959 593">
-  <path d="M805.2 266.1l.2-.7 4.3-.1 3.1 1 2.1.3 1-2.1-1.5-2.1v-1.8l-2.4-2.1-2.1-5.5 1.3-5.3-.2-2.1-1.3-1.3s1.5-1.6 1.5-2.3c0-.6.5-2.1.5-2.1l1.9-1.3 1.9-1.6.5 1-1.5 1.6-1.3 3.7.3 1.1 1.8.3.5 5.5-2.1 1 .3 3.6.5-.2 1.1-1.9 1.6 1.8-1.6 1.3-.3 3.4 2.6 3.4 3.9.5 1.6-.8 3.2 4.2 1.4.5.7.3.1 1.9-.8 3.1-1.6 4.2-.4 5.4 1.5 4.6 2.2-1.9 1.8-5-.5-3.4.4-4.6 2.9-3.8.8-3.2-.5-.6 2-4 .2-4.9-.2-.7-2.3-7.4-1 .5-3.6-2.4-1.8-4.7-1.9-3.6-2.3-1-2.1-3.6.5-2.1.5.5 1.1 2.2 3.2 2.9 4.8 2.3 4 .6.2 1.5-.8 1 .3 2.7h.8l2.1-2.4.8-4.8 2.7-4 3.1-6.5 1.1-5.5-.6-1.1-.2-9.4-1.2-3.1-1.1.8-2.7.3-.5-.5 1.1-1 2.1-1.9.1-1.1.5-.1 1.2.5 4-1.1 5.8-1.9 2.6-1 7.1-5.3 3.9-2.9 3.4-3.6-4.2-1.6-1.3 1.5-2.9 2.7-7.9 3.9-2.3-.2-1.6-.6-1.1.6-2.3 2.6-1.5 1.3-1.3.3-.3-1.3 1.9-1.8-.7-1.6 1 .2 5-3.4 3.6-3.2 1.9-2.1.8.6 2.7-1.5 5.2-1.1 7-3.5.9-.2 2.9-1 2.4-1.9 1.1-1.8 1.3.2 2.9-1.5.5-.4 2.1-1-.5-2.3.8-1.5 2.9-1.5.8 3.1-.5 1.8-2.4 1.5v1l1.9-1.5 3.9-4.5 3.9-1.9 4.2-1.5-.3-2.4-1-2.9-1.9-2.4-1.8-.8-2.1.2-.5.5 1 1.3 1.5-.8 2.1 1.6.8 2.7-1.8 1.8-2.3 1-3.6-.5-3.9-6-2.3-2.6h-1.8l-1.1.8-1.9-2.6.3-1.5 2.4-5.2-2.9-4.4-.6-.5.9-1.1 1.1-3.3.4-1.1 1.1-6.3.2-4.4 1.5-1.3-1-3.2 3.1-3.6 1.6 1.5 1.3-.5 5.3-3.1.3-2.9 2.9-.5 1.6-2.6-.2-1.6-.3-3.1.8-1.3-.3-1.1-1.3-1.5 2.1-1.3 1.8 3.2 1.5-.3.3 1.3v1.6l1.9.2.5-2.7.5-.6-1.6-1.5 1-1.5 2.4-1.5 1-1.5 1.8-.2s.3 2.1 1 2.1h1.3l4.8-5.5 3.4-3.1 1.9-.6 2.1-4.7v-1.9l-2.3-3.7-1.9-2.1-2.7.2.5 1.1-.2.5h-.7l-2.9-2.3-.2-4.8-.8-1.9h-6L901 40l-1.9-1-6-2.4-1.5-.2-1.8 1.8-4 2.9v1l-.8.8-2.7-.6L881 40v-1l-1.3-.2h-1.3l-2.1 4.2-2.9 8.9-1.8 4.8.2 4.8.2 1.5-.8 2.7-.8 1v6l1.9 2.4-1.5 4-2.6 4.7-.8 5.5V92l-1.5-.4-1.4.1-.9.5h-.9l-.6 1.6-.6-.5-1-1-1.5 1.9v5l-.9.3-26.2 6.7-.6.4-7.6 2.1-4.5 1.5-3.2-.2-5.5 1.3-3.1 1.2-2.4 1.8-2.1 2.4-2.7 3.7-2.9 4.5-1.5 2.9-.6.8-5.8 5.5.2 2.6.8 1.1 1.8.8h1.8v1.5l-1.1 2.1.3 1.5 1.5 2.1-.2 2.3-1.9 1.1h-2.1l-1.6 1.9-1.8 3.2-2.1 1.8-5.2.5-2.6 1.1-2.1 1.3-1.6-.2-1.9-1.3-6.3.2-3.2.5-4 1.3-4.4 1.5-2.9 1.8 1.9 6.1 1.8.2 1.3 3.1.2 1-1.1 1-2.1 2.7-.5 1.6-1.9 1.8-1.8 1.1-1 1.6-1.3 1.1-1.4 1.1-1 .5-5.5 5.6-1.3.5-4.2 3-1-.1-6.1 4.1-3.9 2.3-3.4 3.7-4 3.9-3.2.8-2.9.5-5.5 2.6-2.1.2-3.4-3.1-5.2.6-2.6-1.5-2.4-1.4-1.2-.3.1-.6.2-1.5 2.1-3.7 2-1.7-.2-5.1 1.6-1.6 1.1-.3.2-3.6 1.5-3 1.1.6.2.6.8.2 1.9-1-.3-9.5-3.2-8.2-2.3-9.1-2.4-3.2-2.6-1.8-1.6 1.1-3.9 1.8-1.9 5-2.7 3.7-1.1.6-1.5-.6s-2.6-1.5-2.4-2.1.5-5 .5-5l3.4-1.3.8-3.4.6-2.6 2.4-1.6-.3-10-1.6-2.3-1.3-.8-.8-2.1.8-.8 1.6.3.2-1.6-3-1.9-1.3-2.6h-2.6l-4.5-1.5-5.5-3.4h-2.7l-.6.6-1-.5-3.1-2.3-2.9 1.8-2.9 2.3.3 3.6 1 .3 2.1.5.5.8-2.6.8-2.6.3-1.5 1.8-.3 2.1.3 1.6.3 5.5-3.6 2.1-.6-.2v-4.2l1.3-2.4.6-2.4-.8-.8-1.9.8-1 4.2-2.7 1.1-1.8 1.9-.2 1 .6.8-.6 2.6-2.3.5v1.1l.8 2.4-1.1 6.1-1.6 4 .6 4.7.5 1.1-.8 2.4-.3.8-.3 2.7 3.6 6 2.9 6.5 1.5 4.8-.8 4.7-1 6-2.4 5.2-.3 2.7-3.3 3.1-1 .8-2.8 1.6-2.1 1.9-1.1.3-1.5-1-3.1-.9-.9.2-.3-.9-.8-2.6-1.3-3.7-1.6-1.8-1.5-2.6-.2-5.5-.3-1.1.4-3-1.6-4.5-.6-6.1-1.1-2.4 1-3.1.8-2.9 1.5-2.6-.6-3.4-.6-3.6.5-1.8 1.9-2.4.2-2.7-.8-1.3.6-2.6.5-3.2 2.7-5.7 2.9-6.8.2-2.3-.3-1-.8.5-4.2 6.3-2.7 4-1.9 1.8-.8 2.3-1.5.8-1.1 1.9-1.5-.3-.2-1.8 1.3-2.4 2.1-4.7 1.8-1.6 1.1-2.3.6-.9 3.2-7 1-4 1.9-4.4.8-.2 1.1 1.6h.6l4.5-2.4 1.5 1.6.5.2 1.3-1.1 1.1-3.1 2.4-.8 7-.6 1.9-2.6 5.2-.2 5.8 1.3h1.8l3.2-1.5 2.3.2 2.1-.6 3.7.5.8.3 1.3-.3-1.3-1-1.3-.6-3.2-3.1v-7l-1.5-.5-1.1 1.1-6.1 1.6-1.9.5-2.9-.8-.5-.3V100l-1.5-.2-2.6 1.3-4.5 1.9-6.6.3-3.4 1.1-4 3.6-1.6 1h-1.1l-1.3.8-1.6-.5-1.6-1.3-1.5 1-3.9.2-2.7-2.7-1.5-3.1-1.5-1.1-3.2-1h-2.3l-1.3-1.3-3.6 2.9-1 1.1-.8-.5.3-2.6 2.4-3.2.5-2.4 2.3-.8 1.5-3.1 3.7-1 .3-1-1.1-1.1-4.7.5-4.4 2.4-2.3 2.3-1.3 1.8-1.8.8-1.9 2.9-.2 1.3-4.4 2.1-2.4 1.9-6 1-.6.6v1l-3.6 2.3-2.7.8-.7.6-1 .4-.5 1.3-1.1-.2-.6-1.1-2.7-.8-1.1.2-1.8 1-1-.6.6-1.9 1.9-3.1 1.1-1.1-1.9-1.5-2.1.8-2.9 1.9-7.4 3.2-2.9.6-2.9-.5-1-.9-.4-.6 3.8-2.9 1.3-.2 4.5-5 1.8-.8 2.3-3.9 2.4-3.6 3.1-2.6 4.8-2 9.2-4.1 3.9-1.8.6-2.3-4.4.4-.7 1.1h-.6l-1.8-3.1-8.9.3-1 .8h-1l-.5-1.3-.8-1.8-2.6.5-3.2 3.2-1.6.8h-3.1l-2.6-1v-2.1l-1.3-.2-.5.5-2.6-1.3-.5-2.9-1.5.5-.5 1-2.4-.5-5.3-2.4-3.9-2.6h-2.9l-1.3-1-2.3.6-1.1 1.1-.3 1.3h-4.8v-2.1l-6.3-.3-.3-1.5h-4.8l-1.6-1.6-1.5-6.1-.8-5.5-1.9-.8-2.3-.5-.6.2-.3 8.2H462.1l-28.4-.6-19.1.2-26.5-1.3-24.9-1.9-1.3-.5-30.7-2.8L302 50l-29.3-4-32.3-5.3-18.4-3.4-32.7-6.9-1.1-.2-13-2.5-.7-.4-15.2-3.4-23-5.7-20-5.7-8.6-1.9L98 7.9l-4.4-1.5-1.1.8-.4.8 2.4 4.8 1.1 2.6-1.7 3.6v2.3l.6 1.5-.8 1.8.5 3.2 1 1.3-.2 1.2-1.5.2-.6-1.9-1.1-2.4-1.8-1.6.3-2.1 2.3-.5-.3-1.8-.3-1.1-2.1 1.3-1.3 1.1V24l-2.3.2-3.4-1-2.9-1.5-3.1-.6-4.5-2.1-3.2-2-2.7-2.6-2.5-2.9-2.1-.5-2.3 9.4 1.8 3.2v7.9l-.6 2.9 1.5 7.1 2.7 2.7-4.4.8-.2 3.7 2.6 1.1-1.6 4-2.7.3-.3 2.9 2.3 2.9-2.1 2.6-2.3 6.5-3.2 10-3.2 6.5-5 14.1-6.5 13.6-8.1 12.6-1.9 2.9-.8 8.6-1.3 6 2.7 3.5-.5 1-1.6 4.7-.2 7.4-5.2 11.8-3.1 2.6-.3 1.1-1.8.8-1.5 4.2-.8 3.2 2.7 4.2 1.6 4.2 1.1 3.6-.3 6.5-1.8 3.1-.6 5.8-1 3.7 1.8 3.9 2.7 4.5 2.3 4.8 1.3 4-.3 3.2-.3.5v2.1l5.7 6.3-.5 2.4-.6 2.3-.6 1.9.2 8.2 2.1 3.7 1.9 2.6 2.7.5 1 2.7-1.1 3.6-2.1 1.6h-1.1l-.8 3.9.5 2.9 3.2 4.4 1.6 5.3 1.5 4.7L38 298l3.4 5.8 1.5 2.6.5 2.9 1.6 1v2.4l-.8 1.9-1.8 7.1-.5 1.9 2.4 2.7 4.2.5 4.5 1.8 3.9 2.1h2.9l2.9 3.1 2.6 4.8 1.1 2.3 3.9 2.1 4.8.8 1.5 2.1.6 3.2-1.5.6.3 1 3.2.8 2.7.2 2.9 4.7 3.9 4.2.8 2.3 2.6 4.2.3 3.2v9.4l.5 1.8 10 1.5 19.7 2.7 13.9 1 1 .7-2.6 2.2-.3 1.5.5 1 18.9 10.7 12.1 7.6 14.7 8.6 16.8 10 12.3 2.4 25.1 2.7 1.6.8 15.5 2 1.3-10 16.7 2.6 12.5 1.6h1l1.9.5 2.6 2.9 1.5 4.4 4.7 2.3 1.3 3.2 7.1 7.9 1.3 1.6 5 2.1 1.1 2.1 1.6 1 .5 2.7 3.2 6.5v8.1l2.3 4.7 7.4 7.8 5.2 2.1 1.8 1.9v.6l3.9 2.3 1.9.6 1.8 1.1 2.6 1 2.4-2.4 4.4-6.1 1-3.7 2.3-3.2 3.6-1.5 4.5-1.8 3.1 2.3 7.4.6 6.8 1.1 2.6 2.1v1.1l2.6 3.1 6 5.3.2 1.5 1.8 1.9.8 4.2 5.3 12.3-.2 1.9 4.2 2.6 3.6 6.6 3.4 4.4 3.2 1.3 1.6 2.3-1.3 4.4.6 1 1.3.6-.3 3.4-.6.6.6 2.3 3.2 1.9 1.3 6.5 2.1 3.9 7.6 3.4 5.2 1.1 4.2 3.1 3.2.6 1.3-.5 5.5 1.1 5.7 3.9 3.1-1.9 1-1.5-1.8-2.7-1-6.1-1.8-7-.8-2.4.8-4.5 1.1-3.9 1.3-4.5 1.5-5.5-2.3-1.9 1-1.9 4-.3 3.9-5.5 3.4-.6 5.8-3.6 1.8-1.5 6.3-3.4 5.7-2.4 5.3-3.2 2.7-2.1 5.7-5.3 1.3-.8 2.1-1.5 2.6-1.9 1-1.9 9.9-4.5 5.7-1.6.6-.1 4.7-1.5 8.1-.3 10.3 3.6 6.5 1.1 3.7-1.5 3.2 1.1 3.2 1 .8-2.1-3.2-1.1-2.6.5-2.7-1.6s.2-1.3.8-1.5c.6-.2 3.1-1 3.1-1l1.8 1.5 1.8-1 3.2.6 1.5 2.4.3 2.3 4.5.3 1.8 1.8-.8 1.6-1.3.8 1.6 1.6 8.4 3.6 3.6-1.3 1-2.4 2.6-.6 1.8-1.5 1.3 1 .8 2.9-2.3.8.6.6 3.4-1.3 2.3-3.4.8-.5-2.1-.3.8-1.6-.2-1.5 2.1-.5 1.1-1.3.6.8s-.2 3.1.6 3.1 4.2.6 4.2.6l4 1.9 1 1.5h2.9l1.1 1 2.3-3.1v-1.5h-1.3l-3.4-2.7-5.8-.8-3.2-2.3 1.1-2.7 2.3.3.2-.6-1.8-1v-.5h3.2l1.8-3.1-1.3-1.9-.3-2.7-1.5.2-1.9 2.1-.6 2.6-3.1-.6-1-1.8 1.8-1.9 2-1.8.8-.5 1.1-.8 2.6-4.2 1.8.8 6.8-1.9 2.1.3 1.5.8h5.2l.3-1.3 1-.2h2.7l.6.2 1.3-2.7 1.5-4.4 2.3.6 3.1 6v1l-2.7 1.9 2.7.3 5.5-2.6.7.1 3.5-.6 6-2.1 6-.5 4.4-.6 7.6 1.8 8.1 3.9 1.6 1.5 2.9 1.1 1.6 1.9.3 2.7 3.2-1.3h3.9l3.6-1.9 3.7-3.6 3.1.2.5-1.1-.8-1 .2-1.9 4-.8h2.6l2.9 1.5 4.2 1.5 2.4 3.7 2.7 1 1.1 3.4 3.4 1.6 1.6 2.6 1.9.6 5.2 1.3 1.3 3.1 3.1 3.7v9.5l-1.5 4.7.3 2.7 1.3 4.8 1.8 4 .8-.5 1.5-4.5-2.6-1-.3-.6 1.6-.6 4.5 1 .2 1.6-3.2 5.5-2.1 2.4 3.6 3.7 2.6 3.1 2.9 5.3 2.9 3.9 2.1 5 1.8.3 1.6-2.1 1.8 1.1 2.6 4 .6 3.6 3.1 4.4.8-1.3 3.9.3 3.6 2.3 3.4 5.2.8 3.4.3 2.9 1.1 1 1.3.5 2.4-1 1.5-1.6 3.9-.2 3.1-1.5 2.7-3.2-.5-1.9-.3-2.4.6-1.9-.3-1.9 2.4-1.3.3-3.4-.6-1.8-.5-12-1.3-7.6-4.5-8.2-3.6-5.8-2.6-5.3-2.9-2.9-3.2-7.9.8-1.3 1.1-1.3-1.6-2.9-4-3.7-4.8-5.5-3.7-6.3-5.3-9.4-3.7-9.7-2.3-7.3v-.9l-.8-6.3 2.3-10 1.5-4.2-.5-2.6 3.3-6.2-.5-1.4.6-1 2.1-1.3 5-5.5-1-3.2 2.9-.2 3.6-3.4 1.6-.8 2.3-3.4 2.7-2.7 2.1-3.6 2.4-.6 1.1-2.7 1.6-.8.5-6.3 2.6-6.1 5.4-5.5.3-.8 5.5-1.3 4.7-.5.5-2.4 1.9-6.5 3.4-4.7 6.5-5.3 5.2-2.4 2.7-.6 1.1.5h1.3l3.1-4.8 1.9-3.6-1.3.5-2.3 2.3-.6-1.6H826l1.9-6.3-.8-1.3h-1.9v-1l-.3-1.3 1.6 1.3 1.5.2 2.4.3 3.7-1.6 1.3-2.9.6-2.1 2.6-1.3.3-4.2-.8-.6 2.4-.2-.6-2.3-2.4-2.4-3.6-6.5-1.7-4.7-.9-.9-3.6-6-5.8 1.7-1.6-1.5 2.6-1.4-.5-2.5-1.8-1.8-.1-1.4-2.3-1.5-.1-1.6 2.7.1.2-1.4-1.2-.8.5-1.9-1.4-1.1.4-4.7-.9-1.2-3.2-.4-2.2-2.5-4.9-.9-2.9-1zm-37.3 311.8l2.4-.6 1.3-.2 1.5-2.3 2.3-1.6 1.3.5 1.7.3.4 1.1-3.5 1.2-4.2 1.5-2.3 1.2-.9-1.1zm13.5-5l1.2 1.1 2.7-2.1 5.3-4.2 3.7-3.9 2.5-6.6 1-1.7.2-3.4-.7.5-1 2.8-1.5 4.6-3.2 5.3-4.4 4.2-3.4 1.9-2.4 1.5zM836 331.5l2.6-2.5 3.2-2.6 1.5-.6.2-2-.6-6.1-1.5-2.3-.6-1.9.7-.2 2.7 5.5.4 4.4-.2 3.4-3.4 1.4-2.8 2.4-1.1 1.2-1.1-.1zm64-157.6l2.2-.7.5-1.7 1 .1 1 2.3-1.3.5-3.9.1.5-.6zm-9.4.8l2.3-2.6h1.6l1.8 1.5-2.4 1-2.2 1-1.1-.9zm11.7-67.2l1.5-1.5 1.4 1.1.6 2.4-1.7.9-1.8-2.9zm6.7-5.9l1.8 1.9s1.3.1 1.3-.2.2-2 .2-2l.9-.8-.8-1.8-2 .7-1.4 2.2zm-88.7 162.7l1.1 2.5.2 1.8 1.1 1.9s.9-.9.9-1.2c0-.3-.7-3.1-.7-3.1l-.7-2.3-1.9.4zM581.6 82.1l1.8-2.1 2.2-.8 5.4-3.9 2.3-.6.5.5-5.1 5.1-3.3 1.9-2.1.9-1.7-1zm86.2 32.1l.6 2.5 3.2.2 1.3-1.2s-.1-1.5-.4-1.6c-.3-.2-1.6-1.9-1.6-1.9l-2.2.2-1.6.2-.3 1.1 1 .5zM84.1 12.3l2-.2.5 1.4 1.5-1.6h2.3l.8 1.5-1.5 1.7.6.8-.7 2-1.4.4s-.9.1-.9-.2 1.5-2.6 1.5-2.6l-1.6-.5-.3 1.5-.7.6-1.5-2.3-.6-2.5zm373.1 555l-.6-7.1-2.7-7.2-.6-7 1.5-8.2 3.3-6.9 3.5-5.4 3.2-3.6.6.2-4.8 6.6-4.4 6.5-2 6.6-.3 5.2.9 6.1 2.6 7.2.5 5.2.2 1.5-.9.3zM48.8 337l1.3 1.5-.2 1.3-3.2-.1-.6-1.2-.6-1.5h3.3zm1.9 0l1.2-.6 3.6 2.1 3.1 1.2-.9.6-4.5-.2-1.6-1.6-.9-1.5zm20.7 19.8l1.8 2.3.8 1 1.5.6.6-1.5-1-1.8-2.7-2-1.1.2v1.2zm-1.4 8.7l1.8 3.2 1.2 1.9-1.5.2-1.3-1.2s-.7-1.5-.7-1.9v-2.2h.5z"/>
-  <g class="waypoints">
-    {% for waypoint in site.waypoints %}
-      <circle cx="{{ waypoint.x }}" cy="{{ waypoint.y }}" r="5.5"/>
-    {% endfor %}
-
-  </g>
-</svg>
+<div id='map' style='width: 800px; height: 600px;'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWxleHRyIiwiYSI6ImNpZ2ExbG15YzA4bzF0a20zYzltaGFlaHkifQ.wLsWFLI8mnMHcTRsDpuRYg';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/alextr/cjfbh3kum2fa92sq95lwlowfv',
+    center: [-96, 37.8],
+    zoom: 3
+});
+</script> -->
