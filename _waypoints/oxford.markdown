@@ -1,10 +1,10 @@
 ---
 layout: waypoint
-name:  "Croton"
+name:  "Oxford"
 story: "this is where I grew up"
-date: 1995-01-01
-bearing: 150
-center: "[-73.8912, 41.2084]"
+date: 2016-01-01
+bearing: 180
+center: "[-1.25778, 51.75194]"
 zoom: 7
 pitch: 0
 duration: 6000

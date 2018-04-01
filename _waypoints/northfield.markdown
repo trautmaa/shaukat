@@ -1,8 +1,17 @@
 ---
 layout: waypoint
 name:  "Northfield"
-x: 517
-y: 148
-story: "this is where I went to school"
-date: 1/1/2013
+story: "this is where I grew up"
+date: 2013-01-01
+bearing: 90
+center: "[-93.1612, 44.4582]"
+zoom: 7
+pitch: 40
+duration: 6000
+speed: .6
 ---
+//         bearing: 90,
+//         center: [-93.1612, 44.4582], //Nofo
+//         zoom: 7,
+//         speed: 0.6,
+//         pitch: 40

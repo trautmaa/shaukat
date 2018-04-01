@@ -1,10 +1,10 @@
 ---
 layout: waypoint
-name:  "Miami"
+name:  "Moab"
 story: "this is where I grew up"
-date: 2015-01-04
-bearing: 27
-center: "[-80.1937, 25.7743]"
+date: 2015-01-02
+bearing: 90
+center: "[-109.5462, 38.5738]"
 zoom: 7
 pitch: 20
 duration: 6000

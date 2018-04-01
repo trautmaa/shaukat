@@ -1,10 +1,10 @@
 ---
 layout: waypoint
-name:  "Croton"
+name:  "New Haven"
 story: "this is where I grew up"
-date: 1995-01-01
-bearing: 150
-center: "[-73.8912, 41.2084]"
+date: 2018-01-01
+bearing: 90
+center: "[-72.9251, 41.3082]"
 zoom: 7
 pitch: 0
 duration: 6000

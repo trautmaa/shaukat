@@ -1,10 +1,10 @@
 ---
 layout: waypoint
-name:  "Miami"
+name:  "Granada, Spain"
 story: "this is where I grew up"
-date: 2015-01-04
-bearing: 27
-center: "[-80.1937, 25.7743]"
+date: 2016-01-02
+bearing: 90
+center: "[-3.60083, 37.17806]"
 zoom: 7
 pitch: 20
 duration: 6000
