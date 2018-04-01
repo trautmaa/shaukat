@@ -9,4 +9,5 @@ zoom: 7
 pitch: 0
 duration: 6000
 speed: .6
+source: "croton.JPG"
 ---

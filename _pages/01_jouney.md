@@ -31,7 +31,7 @@ overflow-y:scroll;
 #features {
     font-family: sans-serif;
     overflow-y: scroll;
-    background-color: #fafafa;
+    background-color: #f05456;
 }
 section {
     display: grid;
@@ -52,6 +52,10 @@ section:last-child {
     border-bottom: none;
     margin-bottom: 200px;
 }
+img {
+    height:auto;
+    width:100%;
+}
 </style>
 
 <div id="mapwrap">
@@ -69,7 +73,7 @@ section:last-child {
         <p>{{ waypoint.story }}</p>
       </div>
       <div class="image">
-        <img src="/assets/{{ waypoint.slug | prepend: site.baseurl }}">
+        <img src="/assets/{{ waypoint.source | prepend: site.baseurl }}">
       </div>
     </section>
   {% endfor %}

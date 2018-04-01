@@ -9,4 +9,5 @@ zoom: 7
 pitch: 20
 duration: 6000
 speed: .6
+source: "granada.PNG"
 ---
