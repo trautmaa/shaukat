@@ -18,7 +18,7 @@ permalink: /journey/
             <p>{{ waypoint.content }}</p>
         </div>
         <div class="image">
-            <img src="/assets/{{ waypoint.source | prepend: site.baseurl }}">
+            <img src="{{ '/assets/' | append: waypoint.source | prepend: site.baseurl }}">
         </div>
         </section>
     {% endfor %}
