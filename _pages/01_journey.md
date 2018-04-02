@@ -76,4 +76,6 @@ function isElementInView(id) {
     var parentMidline = (parentRect.height / 2) + parentRect.top;
     return (elementRect.top < parentMidline) && (elementRect.bottom > parentMidline);
 }
+// disable map zoom when using scroll
+map.scrollZoom.disable();
 </script>
