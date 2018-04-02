@@ -58,3 +58,13 @@ $(window).on('resize scroll', function() {
 
 
 });
+
+
+$(window).scroll(function(e){
+  parallax();
+});
+function parallax(){
+  var scrolled = $(window).scrollTop();
+  $('.bg1').css('top',-(scrolled*0.15)+'px');
+  $('.bg2').css('top',-(scrolled*0.05)+'px');
+}

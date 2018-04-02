@@ -10,8 +10,3 @@ pitch: 40
 duration: 6000
 speed: .6
 ---
-//         bearing: 90,
-//         center: [-93.1612, 44.4582], //Nofo
-//         zoom: 7,
-//         speed: 0.6,
-//         pitch: 40

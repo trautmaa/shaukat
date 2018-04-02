@@ -3,83 +3,29 @@ layout: page
 title: Journey
 permalink: /journey/
 ---
-
-<style>
-    /* body { margin:0; padding:0; }
-    #map { position:absolute; top:0; bottom:0; width:100%; } */
-</style>
-
-<style>
-#map {
-    height: 300px;
-
-}
-#features {
-height:300px;
-overflow-y:scroll;
-} 
-
-/*#map {
-  height:300px;
-  width:50%;
-}
-
-#map {
-    position: fixed;
-    width:50%;
-}*/
-#features {
-    font-family: sans-serif;
-    overflow-y: scroll;
-    background-color: #f05456;
-}
-section {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1rem;
-} 
-section {
-    padding:  25px 50px;
-    line-height: 25px;
-    border-bottom: 1px solid #ddd;
-    opacity: 0.25;
-    font-size: 13px;
-}
-section.active {
-    opacity: 1;
-}
-section:last-child {
-    border-bottom: none;
-    margin-bottom: 200px;
-}
-img {
-    height:auto;
-    width:100%;
-}
-</style>
-
 <div id="mapwrap">
-<div id='map'></div>
-<div id='features'>
-  {% assign sortedWaypoints = site.waypoints | sort: 'date' %}
-  {% for waypoint in sortedWaypoints %}
-  {% if forloop.first == true %}
-      <section id='{{ waypoint.slug }}' class='active'>
-    {% else %}
-      <section id='{{ waypoint.slug }}'>
-    {% endif %}
-      <div class="text">
-        <h3>{{ waypoint.name }}</h3>
-        <p>{{ waypoint.story }}</p>
-      </div>
-      <div class="image">
-        <img src="/assets/{{ waypoint.source | prepend: site.baseurl }}">
-      </div>
-    </section>
-  {% endfor %}
+    <div id='map'></div>
+    <div id='features'>
+    {% assign sortedWaypoints = site.waypoints | sort: 'date' %}
+    {% for waypoint in sortedWaypoints %}
+    {% if forloop.first == true %}
+        <section id='{{ waypoint.slug }}' class='active'>
+        {% else %}
+        <section id='{{ waypoint.slug }}'>
+        {% endif %}
+        <div class="text">
+            <h3>{{ waypoint.name }}</h3>
+            <p>{{ waypoint.content }}</p>
+        </div>
+        <div class="image">
+            <img src="/assets/{{ waypoint.source | prepend: site.baseurl }}">
+        </div>
+        </section>
+    {% endfor %}
+    </div>
+    <div style="clear:both;"></div>
 </div>
-<div style="clear:both;"></div>
-</div>
+
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWxleHRyIiwiYSI6ImNpZ2ExbG15YzA4bzF0a20zYzltaGFlaHkifQ.wLsWFLI8mnMHcTRsDpuRYg';
 var map = new mapboxgl.Map({
